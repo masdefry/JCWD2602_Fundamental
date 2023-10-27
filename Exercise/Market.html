@@ -1,0 +1,31 @@
+<script>
+    const totalBelanja = 100000
+ 
+    do{
+        // 1. Show Prompt 
+        const uangUser = Number(prompt(`Total Belanja = ${totalBelanja}. Masukan Uang Anda:`))
+        // 2. Show Alert -> 1. Condition Success 2. Condition Failed
+        if(uangUser >= totalBelanja){
+            alert(`Success! Uang Kembalian Anda = ${uangUser - totalBelanja}`)
+        }else{
+            alert('Failed!')
+        }
+    }while(uangUser < totalBelanja)
+
+
+    const totalBelanja = 100000
+    const isFailed = false
+    do{
+        // 1. Show Prompt 
+        const uangUser = Number(prompt(`Total Belanja = ${totalBelanja}. Masukan Uang Anda:`))
+        // 2. Show Alert -> 1. Condition Success 2. Condition Failed
+        if(uangUser >= totalBelanja){
+            alert(`Success! Uang Kembalian Anda = ${uangUser - totalBelanja}`)
+            isFailed = false 
+        }else{
+            alert('Failed!')
+            isFailed = true
+        }
+    }while(isFailed === true)
+
+</script>
