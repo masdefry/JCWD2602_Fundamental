@@ -23,12 +23,13 @@
 
     const app = () => {
         let selectedMenu
+        const cart = []
         do{
             const selectedProduct = Number(prompt(createList(database))) - 1 // Dapat index data nya
             const productReal = database[selectedProduct] //  {name: Anggur, price: 10000}
-            const qty = prompt('Input Quantity')
+            const qty = Number(prompt('Input Quantity'))
 
-            const cart = [] // [ {name: Anggur, price: 10000}]
+             // [ {name: Anggur, price: 10000}]
 
             let productInCart = false 
             let idx = 0
@@ -47,6 +48,13 @@
 
             selectedMenu = prompt(`Menu: \n 1. Select Product \n 2. Checkout`)
         }while(selectedMenu == 1)
+
+        let output = ''
+        for(let i=0; i<cart.length; i++){
+            output += `${cart[i].name} = ${cart[i].qty} Qty`
+        }
+        alert(output)
+
     }
 
     app()
