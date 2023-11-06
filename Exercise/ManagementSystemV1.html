@@ -1,0 +1,121 @@
+<script>
+    class Admin{
+        constructor(username, password){
+            this.username = username, 
+            this.password = password
+        }
+    }
+
+    class Products{
+        constructor(name, price, unit){
+            this.name = name, 
+            this.price = price, 
+            this.unit = unit
+        }
+    }
+
+    const admin = [
+        new Admin('ryan', '123')
+    ]
+
+    const databaseProducts = [
+        new Products('Wortel', 10000, 'Kg'),
+        new Products('Sawi', 3000, 'Kg'), 
+        new Products('Kangkung', 3000, 'Kg')
+    ]
+
+    const app = () => {
+        let menu = ''
+        do {
+            menu = Number(prompt(`Select Menu: \n 1. Search Product \n 2. Sort Product \n 3. Update Product \n 4. Logout`))
+
+            if(menu === 1){
+                // Step-1. Prompt Input Product Name
+                const productToSearch = prompt('Input Your Product to Search:')
+
+                // Step-2. Input Prompt Search dengan Database -> Looping
+                for(let item of databaseProducts){
+                    if(productToSearch === item.name) alert(`Name: ${item.name} \n Price: ${item.price} \n Unit: ${item.unit}`)
+                }
+
+                // for(let i=0; i<databaseProducts.length; i++){
+                //     productToSearch === databaseProducts[i].name
+                // }
+
+                // Step-3. Show Result with Alert
+            }else if(menu === 2){
+                // Step-1. Prompt to Input Sort by ASC or DESC
+                const ascDesc = Number(prompt('Sort by: \n 1. ASC \n 2. DESC'))
+
+                // Step-2. Prompt to Input Sort by Name or Price
+                const namePrice = Number(prompt('Sort by: \n 1. Name \n 2. Price'))
+
+                // Step-3. Sorting by Name
+                if(ascDesc === 1 && namePrice === 1){
+                    let arrProductName = [] // [Wortel, Sawi, Kangkung]
+
+                    for(let item of databaseProducts){
+                        arrProductName.push(item.name)
+                    }
+
+                    arrProductName = arrProductName.sort() 
+                    
+                    
+                    let result = ''
+                    
+                    // [Kangkung, Sawi, Wortel]
+                    /*
+                    [
+                        new Products('Wortel', 10000, 'Kg'),
+                        new Products('Sawi', 3000, 'Kg'), 
+                        new Products('Kangkung', 3000, 'Kg')
+                    ]
+                    */
+                    for(let item of arrProductName){ // item = kangkung
+                        for(let i of databaseProducts){ // i = {name, price, unit}
+                            if(item === i.name) result += `${i.name}, ${i.price}, ${i.unit} \n`   
+                        }
+                    }
+                    
+                    alert(result)
+                    // for(let i=0; i < databaseProducts.length; i++){
+                    //     arrProductName.push(databaseProducts[i].name)
+                    // }
+                }else{
+                    let arrProductPrice = [] // [10000, 3000, 3000]
+
+                    for(let item of databaseProducts){
+                        arrProductPrice.push(item.price)
+                    }
+
+                    let newArrProductPrice = arrProductPrice.sort((a, b) => a - b) // a-b ASC, b-a DESC
+
+                    // [3000, 3000, 10000]
+                    /*
+                    [
+                        new Products('Wortel', 10000, 'Kg'),
+                        new Products('Sawi', 3000, 'Kg'),
+                        new Products('Kangkung', 3000, 'Kg')
+                    ]
+                    */
+                    let result = ''
+                    for(let item of newArrProductPrice){ // item = kangkung
+                        for(let i=0; i < databaseProducts.length; i++){ // i = {name, price, unit}
+                            if(item === i.price){
+                                result += `${i.name}, ${i.price}, ${i.unit} \n`
+                                databaseProducts.splice(i, 1)
+                                break; 
+                            }   
+                        }
+                    }
+
+                    alert(result)
+                }
+            }else if(menu === 3){
+
+            }
+        } while (menu!==4);
+    }
+
+    app()
+</script>
