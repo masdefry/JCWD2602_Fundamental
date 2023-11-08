@@ -18,3 +18,41 @@
     //              - cash >= ammount -----> Transaction success
     //              - cash < ammount  -----> User input cash ulang
 </script>
+
+<!-- Database Products (Beda File) -->
+<script src="Database.js"></script>
+<script>
+    // Main Menu
+    do{
+        var menu = Number(prompt(`1. Buy Item \n2. Cart \n3. Checkout`))
+
+        if(menu === 1){
+            // Masuk ke Menu: Buy Item
+            // Step-01. Menu-01: Buy Item
+                let listProduct = ''
+                for(let i=0; i < dbProducts.length; i++){
+                    listProduct += `${i+1}. ${dbProducts[i].name} (Stock: ${dbProducts[i].stock}) = Rp.${dbProducts[i].price.toLocaleString('id-ID')}/${dbProducts[i].unit} \n`
+                }
+                //          - Prompt untuk input produk yang akan dibeli
+                const selectedProduct = Number(prompt(`Input Your Selected Item: \n${listProduct}`))-1
+                //          - Prompt untuk input qty
+                const qty = Number(prompt('Input Quantity of Product Selected:'))
+                //          - Cek, apakah qty <= stock?
+                //              - qty <= stock -----> Product add to cart
+                //              - qty > stock  -----> User input qty ulang
+                const stockSelectedProduct = dbProducts[selectedProduct].stock 
+
+                if(qty > stockSelectedProduct){
+                    // Apabila qty melebihi stock, tampil alert
+                    alert('Stock Product Tidak Mencukupi!')
+                }else{
+                    //  Apabila qty tidak melebihi stock, data products push ke cart
+                    dbCarts.push({...dbProducts[selectedProduct], quantity: qty})
+                }
+        }else if(menu === 2){
+            // Masuk ke Menu: Cart
+        }else if(menu === 3){
+            // Masuk ke Menu: Checkout
+        }
+    }while(menu < 1 || menu > 3)
+</script>
