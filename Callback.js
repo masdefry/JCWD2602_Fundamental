@@ -38,3 +38,6 @@ const Perkalian = (num1, num2, cb) => { // num1 = 3, num2 = 5, cb = function Res
 Perkalian(3, 5, (output) => { // output = 15
     console.log(output) // console.log(15)
 })
+
+
+
