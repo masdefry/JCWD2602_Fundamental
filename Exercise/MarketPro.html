@@ -49,10 +49,8 @@
                     console.log(dbProducts[selectedProduct].name)
                     if(dbCarts[i].name === dbProducts[selectedProduct].name) qtyInCart += dbCarts[i].quantity
                 }
-                console.log(`Qty Input: ${qty}`)
-                console.log(`Qty in Cart ${qtyInCart}`)
-                console.log(`Stock ${stockSelectedProduct}`)
-                if((qty + qtyInCart) >= stockSelectedProduct){
+              
+                if((qty + qtyInCart) > stockSelectedProduct){
                     // Apabila qty melebihi stock, tampil alert
                     alert('Stock Product Tidak Mencukupi!')
                 }else{
